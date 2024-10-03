@@ -1,4 +1,4 @@
-from airflow import dag
+from airflow.decorators import dag
 from datetime import timedelta, datetime
 from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import SparkKubernetesOperator
 from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import SparkKubernetesSensor
