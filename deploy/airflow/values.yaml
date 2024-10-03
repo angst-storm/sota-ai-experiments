@@ -9,7 +9,7 @@ airflow:
       lastName: admin
   image:
     repository: customairflow
-    tag: 6
+    tag: 7
 flower:
   enabled: false
 redis:
@@ -21,4 +21,7 @@ dags:
   persistence:
     enabled: false
   gitSync:
+    enabled: false
+scheduler:
+  logCleanup:
     enabled: false
