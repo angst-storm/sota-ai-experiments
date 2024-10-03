@@ -7,3 +7,6 @@ install:
 
 ui:
 	kubectl port-forward svc/airflow-web 8080:8080 --namespace airflow
+
+upgrade:
+	helm upgrade airflow airflow-stable/airflow --namespace=airflow --version=8.9.0 --values=values.yaml --wait

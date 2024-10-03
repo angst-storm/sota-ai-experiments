@@ -13,3 +13,10 @@ redis:
   enabled: false
 workers:
   enabled: false
+dags:
+  path: /airflow/dags
+  gitSync:
+    enabled: true
+    repo: "https://github.com/angst-storm/sota-ai-experiments.git"
+    branch: "main"
+    revision: "HEAD"
