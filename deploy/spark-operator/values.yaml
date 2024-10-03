@@ -1,0 +1,4 @@
+sparkJobNamespace: spark-operator
+webhook:
+  enable: true
+  port: 443
