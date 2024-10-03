@@ -1,13 +1,14 @@
 from airflow.decorators import dag
 from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import SparkKubernetesOperator
 from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import SparkKubernetesSensor
+from airflow.template.templater import LiteralValue
 
 @dag()
 def spark_operator():
     submit = SparkKubernetesOperator(
         task_id="submit",
         namespace="spark-operator",
-        application_file="sparkapp.yaml",
+        application_file=LiteralValue("sparkapp.yaml"),
         do_xcom_push=True,
         params={"app_name": "spark-pi"},
     )
