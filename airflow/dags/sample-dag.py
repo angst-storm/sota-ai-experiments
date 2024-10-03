@@ -1,14 +1,9 @@
-from airflow import DAG
+from airflow import dag
 from datetime import timedelta, datetime
 from airflow.providers.cncf.kubernetes.operators.spark_kubernetes import SparkKubernetesOperator
 from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import SparkKubernetesSensor
 
-dag = DAG('sample-dag', start_date=datetime(2020, 6, 7, 6), schedule_interval=timedelta(days=1), default_args={'retries': 3, 'retry_delay': timedelta(seconds=10)})
-
-@dag(
-   schedule=None,
-   start_date= datetime(2024, 3, 1),
-)
+@dag(start_date=datetime.datetime(2024, 1, 1), schedule="@daily")
 def spark_operator():
    submit = SparkKubernetesOperator(
         task_id="spark-pi",
