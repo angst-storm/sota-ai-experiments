@@ -10,6 +10,13 @@ airflow:
   image:
     repository: customairflow
     tag: 7
+  config:
+    AIRFLOW__EMAIL__EMAIL_BACKEND: "airflow.utils.email.send_email_smtp"
+    AIRFLOW__SMTP__SMTP_HOST: "smtp4dev.smtp4dev"
+    AIRFLOW__SMTP__SMTP_MAIL_FROM: "admin@example.com"
+    AIRFLOW__SMTP__SMTP_PORT: "2525"
+    AIRFLOW__SMTP__SMTP_SSL: "False"
+    AIRFLOW__SMTP__SMTP_STARTTLS: "False"
 flower:
   enabled: false
 redis:
