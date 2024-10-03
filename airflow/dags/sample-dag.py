@@ -6,7 +6,7 @@ from airflow.providers.cncf.kubernetes.sensors.spark_kubernetes import SparkKube
 def spark_operator():
     submit = SparkKubernetesOperator(
         task_id="submit",
-        namespace="airflow",
+        namespace="spark-operator",
         application_file="sparkapp.yaml",
         do_xcom_push=True,
         params={"app_name": "spark-pi"},
@@ -14,7 +14,7 @@ def spark_operator():
 
     submit_sensor = SparkKubernetesSensor(
         task_id="submit_sensor",
-        namespace="airflow",
+        namespace="spark-operator",
         application_name="{{ task_instance.xcom_pull(task_ids='submit')['metadata']['name'] }}",
         attach_log=True,
     )
