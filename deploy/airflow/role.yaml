@@ -1,0 +1,27 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: spark-cluster
+  labels:
+    rbac.authorization.kubeflow.org/aggregate-to-kubeflow-edit: "true"
+rules:
+  - apiGroups:
+      - sparkoperator.k8s.io
+    resources:
+      - sparkapplications
+      - sparkapplications/status
+    verbs:
+      - '*'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: airflow-spark
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: spark-cluster
+subjects:
+  - kind: ServiceAccount
+    name: airflow
+    namespace: airflow

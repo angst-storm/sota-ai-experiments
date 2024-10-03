@@ -7,6 +7,9 @@ airflow:
       email: admin@example.com
       firstName: admin
       lastName: admin
+  image:
+    repository: customairflow
+    tag: 6
 flower:
   enabled: false
 redis:
@@ -14,9 +17,8 @@ redis:
 workers:
   enabled: false
 dags:
-  path: /airflow/dags
+  path: /opt/airflow/dags
+  persistence:
+    enabled: false
   gitSync:
-    enabled: true
-    repo: "https://github.com/angst-storm/sota-ai-experiments.git"
-    branch: "main"
-    revision: "HEAD"
+    enabled: false

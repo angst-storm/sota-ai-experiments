@@ -1,4 +1,4 @@
-sparkJobNamespace: spark-operator
+sparkJobNamespace: airflow
 webhook:
   enable: true
   port: 443

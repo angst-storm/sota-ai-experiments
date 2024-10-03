@@ -7,19 +7,10 @@ from airflow.template.templater import LiteralValue
 def spark_operator():
     submit = SparkKubernetesOperator(
         task_id="submit",
-        namespace="spark-operator",
-        application_file=LiteralValue("sparkapp.yaml"),
-        do_xcom_push=True,
-        params={"app_name": "spark-pi"},
+        namespace="airflow",
+        application_file=LiteralValue("dags/sparkapp.yaml")
     )
 
-    submit_sensor = SparkKubernetesSensor(
-        task_id="submit_sensor",
-        namespace="spark-operator",
-        application_name="{{ task_instance.xcom_pull(task_ids='submit')['metadata']['name'] }}",
-        attach_log=True,
-    )
-
-    submit >> submit_sensor
+    submit
 
 spark_operator()
